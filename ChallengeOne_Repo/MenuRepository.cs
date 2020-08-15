@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ChallengeOne_Repo
 {
-    public class Class1
+    public class MenuRepository
     {
+        private readonly List<Menu> _menu = new List<Menu>();
     }
 }
