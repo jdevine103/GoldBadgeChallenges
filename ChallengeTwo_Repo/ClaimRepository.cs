@@ -10,9 +10,12 @@ namespace ChallengeTwo_Repo
     public class ClaimRepository
     {
         private readonly Queue<Claim> _claimQueue = new Queue<Claim>();
-        
-        //create
 
+        //create
+        public void AddClaim(Claim claim)
+        {
+            _claimQueue.Enqueue(claim);
+        }
         //read
         public Queue<Claim> GetClaimDirectory()
         {

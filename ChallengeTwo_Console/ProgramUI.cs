@@ -68,6 +68,8 @@ namespace ChallengeTwo_ProgramUI
                     //handle this
                     break;
             }
+            Console.WriteLine("Press any key to return to the menu...");
+            Console.ReadKey();
         }
         private void DisplayAllClaims()
         {
@@ -77,7 +79,7 @@ namespace ChallengeTwo_ProgramUI
 
             foreach (var claim in listOfClaims)
             {
-                Console.WriteLine($"{claim.ClaimId}    {claim.Type}   {claim.ClaimAmount}   {claim.DateOfIncident}   {claim.DateOfClaim}  {claim.IsValid}");
+                Console.WriteLine($"{claim.ClaimId}         {claim.Type}        {claim.ClaimAmount}   {claim.DateOfIncident.Date}   {claim.DateOfClaim.Date}  {claim.IsValid}");
             }
         }
 
@@ -133,6 +135,8 @@ namespace ChallengeTwo_ProgramUI
             Console.WriteLine("Program will decide if claim is valid");
 
             Claim newClaim = new Claim(idInputInt, typeInput, descInput, decimalDamageInput, accidentDateInput, claimDateInput);
+
+            _claimQueue.AddClaim(newClaim);
         }
 
         public ClaimType GetClaimType()
