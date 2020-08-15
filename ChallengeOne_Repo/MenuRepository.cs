@@ -38,23 +38,23 @@ namespace ChallengeOne_Repo
         //
 
         //Delete
-        public string DeleteMenuItem(Menu item)
+        public bool DeleteMenuItem(Menu item)
         {
             _menu.Remove(item);
-            return $"{item.MealName} deleted.";
+            return true;
         }
 
-        public void DeleteMenuItemByName(string itemName)
+        public bool DeleteMenuItemByName(string itemName)
         {
             Menu targetItem = GetMenuItemByName(itemName);
             if (targetItem != null)
             {
                 DeleteMenuItem(targetItem);
-                //return $"{itemName} deleted.";
+                return true;
             }
             else
             {
-                //return $"{itemName} not found.";
+                return false; 
             }
         }
     }
