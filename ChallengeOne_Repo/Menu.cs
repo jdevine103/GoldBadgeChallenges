@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace ChallengeOne_Repo
 {
+    //poco
     public class Menu
     {
         //constructors
         public Menu() { }
-        public Menu (int mealNumber, string mealName, string mealDesc, List<string> ingredients, decimal price) 
+        public Menu(int mealNumber, string mealName, List<string> ingredients, decimal price)
         {
             MealNumber = mealNumber;
             MealName = mealName;
-            MealDesc = mealDesc;
             Ingredients = ingredients;
             Price = price;
         }
@@ -22,7 +22,21 @@ namespace ChallengeOne_Repo
         //properties
         public int MealNumber { get; set; }
         public string MealName { get; set; }
-        public string MealDesc { get; set; }
+        public string MealDesc
+        {
+            get
+            {
+                //set MealDesc to the list of ingredients
+                string mealDesc = $"{MealName} consists of "; 
+                foreach (var ingredient in Ingredients)
+                {
+                    mealDesc = mealDesc + ingredient + ", ";
+                }
+
+                return mealDesc;
+            }
+        }
+
         public List<string> Ingredients { get; set; }
         public decimal Price { get; set; }
     }
