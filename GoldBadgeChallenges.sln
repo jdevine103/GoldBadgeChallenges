@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoldBadgeChallenges", "GoldBadgeChallenges\GoldBadgeChallenges.csproj", "{993C22CF-3188-4083-9E44-BAF54BC3C658}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoldBadgeChallenges", "GoldBadgeChallenges\GoldBadgeChallenges.csproj", "{993C22CF-3188-4083-9E44-BAF54BC3C658}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ChallengeOne", "ChallengeOne", "{D4DC7AE7-9DB7-44DA-BDF9-E81B9E681AC5}"
 EndProject
@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeOne_ProgramUI", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeOne_Tests", "ChallengeOne_Tests\ChallengeOne_Tests.csproj", "{62F3460A-C082-4048-BAD4-F252F06DF16F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeTwo_Console", "ChallengeTwo_Console\ChallengeTwo_Console.csproj", "{C4B6AA00-F631-474C-8D0D-5A4E4BAB8B25}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeTwo_ProgramUI", "ChallengeTwo_Console\ChallengeTwo_ProgramUI.csproj", "{C4B6AA00-F631-474C-8D0D-5A4E4BAB8B25}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeTwo_Repo", "ChallengeTwo_Repo\ChallengeTwo_Repo.csproj", "{803BACC4-1FAB-4ABB-A04E-0258373EB530}"
 EndProject

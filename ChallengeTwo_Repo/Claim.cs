@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChallengeTwo_Repo
 {
-    class Claim
+    public class Claim
     {
         public Claim(int claimId, ClaimType type, string description, decimal claimAmount, DateTime incidentDate, DateTime claimDate)
         {
