@@ -79,7 +79,7 @@ namespace ChallengeTwo_ProgramUI
 
             foreach (var claim in listOfClaims)
             {
-                Console.WriteLine($"{claim.ClaimId}         {claim.Type}        {claim.ClaimAmount}   {claim.DateOfIncident.Date}   {claim.DateOfClaim.Date}  {claim.IsValid}");
+                Console.WriteLine($"{claim.ClaimId}         {claim.Type}    {claim.Description}    {claim.ClaimAmount}   {claim.DateOfIncident.Day}   {claim.DateOfClaim.Day}  {claim.IsValid}");
             }
         }
 
