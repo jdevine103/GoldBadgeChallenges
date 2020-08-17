@@ -17,5 +17,9 @@ namespace ChallengeThree_Repo
         {
             _badgeDict.Add(newBadge.ID, newBadge);
         }
+        public Badge GetBadgeById(int id)
+        {
+            return _badgeDict[id];
+        }
     }
 }

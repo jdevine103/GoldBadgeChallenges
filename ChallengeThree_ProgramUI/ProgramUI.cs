@@ -102,12 +102,21 @@ namespace ChallengeThree_ProgramUI
         }
         private void UpdateBadge()
         {
+
+
             _console.WriteLine("What is the badge number to update?");
             string id = _console.ReadLine();
             int idInt = Int32.Parse(id);
 
+            Badge updating = _badgeRepo.GetBadgeById(idInt);
 
+            _console.WriteLine($"{updating.ID} has access to doors {updating.Doors.ToString()}");
 
+            _console.WriteLine("What would you like to do?\n" +
+                "\t 1. Remove a door\n" +
+                "\t 2. Add a door");
+            string input = _console.ReadLine();
         }
+        
     }
 }
