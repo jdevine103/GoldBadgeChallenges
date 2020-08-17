@@ -11,6 +11,7 @@ Challenge Two:
 	-No bound checks at:
 		*any console input
 	-Output formatting
+	-DateTime format
 
 Challenge Three:
 	-﻿Known bugs:
