@@ -12,6 +12,7 @@ Challenge Two:
 		*any console input
 	-Output formatting
 	-DateTime format
+	-Modify claim not done yet
 
 Challenge Three:
 	-﻿Known bugs:
@@ -19,3 +20,5 @@ Challenge Three:
 	-No bound checks at:
 		*any console input
 	-Output formatting
+Challenge Four:
+	no skeleton yet
