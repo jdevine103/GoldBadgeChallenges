@@ -31,7 +31,7 @@ namespace ChallengeTwo_Repo
             {
                 TimeSpan difference = DateOfClaim.Subtract(DateOfIncident);
 
-                if (difference.TotalDays >= 30)
+                if (difference.TotalDays <= 30)
                 {
                     return true;
                 }
