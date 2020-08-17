@@ -15,7 +15,7 @@ namespace ChallengeThree_Repo
 
         public void AddNewBadgeToDict(Badge newBadge)
         {
-
+            _badgeDict.Add(newBadge.ID, newBadge);
         }
     }
 }
