@@ -25,6 +25,7 @@ namespace ChallengeTwo_ProgramUI
         }
         public void Start()
         {
+            SeedContentList();
             RunMenu();
         }
 
@@ -237,6 +238,20 @@ namespace ChallengeTwo_ProgramUI
             }
             _console.WriteLine("Press any key to return to the menu...");
             _console.ReadKey();
+        }
+        private void SeedContentList()
+        {
+            DateTime claim1accident = new DateTime(2020, 02, 11);
+            DateTime claim1date = new DateTime(2020, 02, 13);
+            DateTime claim2accident = new DateTime(2020, 02, 11);
+            DateTime claim2date = new DateTime(2020, 11, 11);
+
+            Claim carCrash = new Claim(1, ClaimType.Car, "Car Crash", 300, claim1accident, claim1date);
+            Claim houseFire = new Claim(2, ClaimType.Home, "House Fire", 4500, claim2accident, claim2date);
+
+            _claimQueue.AddClaim(carCrash);
+            _claimQueue.AddClaim(houseFire);
+
         }
     }
 }
