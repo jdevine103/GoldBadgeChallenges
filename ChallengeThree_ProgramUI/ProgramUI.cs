@@ -59,7 +59,7 @@ namespace ChallengeThree_ProgramUI
                     CreateNewBadge();
                     break;
                 case "2":
-                    //UpdateBadge();
+                    UpdateBadge();
                     break;
                 case "3":
                     //DeleteAll();
@@ -99,6 +99,15 @@ namespace ChallengeThree_ProgramUI
             Badge newBadge = new Badge(badgeNumInt, accessList);
 
             _badgeRepo.AddNewBadgeToDict(newBadge);
+        }
+        private void UpdateBadge()
+        {
+            _console.WriteLine("What is the badge number to update?");
+            string id = _console.ReadLine();
+            int idInt = Int32.Parse(id);
+
+
+
         }
     }
 }
