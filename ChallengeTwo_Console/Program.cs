@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChallengeTwo_ProgramUI.Consoles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,8 @@ namespace ChallengeTwo_ProgramUI
     {
         static void Main(string[] args)
         {
-            ProgramUI ui = new ProgramUI();
+            RealConsole console = new RealConsole();
+            ProgramUI ui = new ProgramUI(console);
             ui.Start();
         }
     }

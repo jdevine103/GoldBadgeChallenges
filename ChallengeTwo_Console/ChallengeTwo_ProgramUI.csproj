@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{C4B6AA00-F631-474C-8D0D-5A4E4BAB8B25}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ChallengeTwo_Console</RootNamespace>
-    <AssemblyName>ChallengeTwo_Console</AssemblyName>
+    <RootNamespace>ChallengeTwo_ProgramUI</RootNamespace>
+    <AssemblyName>ChallengeTwo_ProgramUI</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Consoles\IConsole.cs" />
+    <Compile Include="Consoles\RealConsole.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgramUI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

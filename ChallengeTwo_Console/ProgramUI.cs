@@ -1,4 +1,5 @@
-﻿using ChallengeTwo_Repo;
+﻿using ChallengeTwo_ProgramUI.Consoles;
+using ChallengeTwo_Repo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,12 @@ namespace ChallengeTwo_ProgramUI
     {
         private bool _isRunning = true;
         private readonly ClaimRepository _claimQueue = new ClaimRepository();
+        private readonly IConsole _console;
+
+        public ProgramUI(IConsole console)
+        {
+            _console = console;
+        }
         public void Start()
         {
             RunMenu();
@@ -31,8 +38,8 @@ namespace ChallengeTwo_ProgramUI
 
         private string GetMenuSelection()
         {
-            Console.Clear();
-            Console.WriteLine("" +
+            _console.Clear();
+            _console.WriteLine("" +
                 "Choose a menu item: \n" +
                 "1. See all claims\n" +
                 "2. Take care of next claim\n" +
@@ -40,13 +47,13 @@ namespace ChallengeTwo_ProgramUI
                 "4. Modify an existing claim\n" +
                 "5. Exit");
 
-            string userInput = Console.ReadLine();
+            string userInput = _console.ReadLine();
             return userInput;
         }
 
         private void OpenMenuItem(string userInput)
         {
-            Console.Clear();
+            _console.Clear();
             switch (userInput)
             {
                 case "1":
@@ -68,18 +75,22 @@ namespace ChallengeTwo_ProgramUI
                     //handle this
                     break;
             }
-            Console.WriteLine("Press any key to return to the menu...");
-            Console.ReadKey();
+            _console.WriteLine("Press any key to return to the menu...");
+            _console.ReadKey();
+        }
+        public Queue<Claim> GetDirectory()
+        {
+            Queue<Claim> listOfClaims = new Queue<Claim>();
+            return  listOfClaims = _claimQueue.GetClaimDirectory();
         }
         private void DisplayAllClaims()
         {
-            Queue<Claim> listOfClaims = _claimQueue.GetClaimDirectory();
-
-            Console.WriteLine("ClaimID  Type    Description Amount  DateOfAccident  DateOfClaim IsValid");
+            var listOfClaims = GetDirectory();
+            _console.WriteLine("ClaimID  Type    Description Amount  DateOfAccident  DateOfClaim IsValid");
 
             foreach (var claim in listOfClaims)
             {
-                Console.WriteLine($"{claim.ClaimId}         {claim.Type}    {claim.Description}    {claim.ClaimAmount}   {claim.DateOfIncident.Day}   {claim.DateOfClaim.Day}  {claim.IsValid}");
+                _console.WriteLine($"{claim.ClaimId}         {claim.Type}    {claim.Description}    {claim.ClaimAmount}   {claim.DateOfIncident.ToString()}   {claim.DateOfClaim.Day}  {claim.IsValid}");
             }
         }
 
@@ -89,8 +100,8 @@ namespace ChallengeTwo_ProgramUI
 
             DisplayClaim(claimQueue.Peek());
 
-            Console.WriteLine("Would you like to deal with this clain now(y/n)?");
-            string input = Console.ReadLine();
+            _console.WriteLine("Would you like to deal with this clain now(y/n)?");
+            string input = _console.ReadLine();
 
             if (input == "y")
             {
@@ -101,7 +112,7 @@ namespace ChallengeTwo_ProgramUI
         }
         public void DisplayClaim(Claim claim)
         {
-            Console.WriteLine($"" +
+            _console.WriteLine($"" +
                 $"Claim ID: {claim.ClaimId}\n" +
                 $"Type: {claim.Type}\n" +
                 $"Description: {claim.Description}\n" +
@@ -112,27 +123,27 @@ namespace ChallengeTwo_ProgramUI
         }
         public void EnterNewClaim()
         {
-            Console.WriteLine("Enter the claim ID: ");
-            string idInput = Console.ReadLine();
+            _console.WriteLine("Enter the claim ID: ");
+            string idInput = _console.ReadLine();
             int idInputInt = Int32.Parse(idInput);
 
-            Console.WriteLine("Choose the claim type: ");
+            _console.WriteLine("Choose the claim type: ");
             ClaimType typeInput = GetClaimType();
 
-            Console.WriteLine("Enter the claim desription: ");
-            string descInput = Console.ReadLine();
+            _console.WriteLine("Enter the claim desription: ");
+            string descInput = _console.ReadLine();
 
-            Console.WriteLine("Amount of damage: $");
-            string damageInput = Console.ReadLine();
+            _console.WriteLine("Amount of damage: $");
+            string damageInput = _console.ReadLine();
             decimal decimalDamageInput = Decimal.Parse(damageInput);
 
-            Console.WriteLine("Date of Accident (e.g. 01/22/2020): ");
-            DateTime accidentDateInput = DateTime.Parse(Console.ReadLine());
+            _console.WriteLine("Date of Accident (e.g. 01/22/2020): ");
+            DateTime accidentDateInput = DateTime.Parse(_console.ReadLine());
 
-            Console.WriteLine("Date of Claim(e.g. 01/22/2020): ");
-            DateTime claimDateInput = DateTime.Parse(Console.ReadLine());
+            _console.WriteLine("Date of Claim(e.g. 01/22/2020): ");
+            DateTime claimDateInput = DateTime.Parse(_console.ReadLine());
 
-            Console.WriteLine("Program will decide if claim is valid");
+            _console.WriteLine("Program will decide if claim is valid");
 
             Claim newClaim = new Claim(idInputInt, typeInput, descInput, decimalDamageInput, accidentDateInput, claimDateInput);
 
@@ -141,20 +152,20 @@ namespace ChallengeTwo_ProgramUI
 
         public ClaimType GetClaimType()
         {
-            Console.WriteLine("Select a type:\n" +
+            _console.WriteLine("Select a type:\n" +
                 "1. Car\n" +
                 "2. Home\n" +
                 "3. Theft\n");
             while (true)
             {
-                string typeString = Console.ReadLine();
+                string typeString = _console.ReadLine();
                 bool parseResult = int.TryParse(typeString, out int parsedNumber);
                 if (parseResult && parsedNumber >= 1 && parsedNumber < 3)
                 {
                     ClaimType claimType = (ClaimType)parsedNumber - 1;
                     return claimType;
                 }
-                Console.WriteLine("Invalid selection. Please try again.");
+                _console.WriteLine("Invalid selection. Please try again.");
             }
         }
     }
