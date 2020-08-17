@@ -25,5 +25,15 @@ namespace ChallengeTwo_Repo
         {
             _claimQueue.Dequeue();
         }
+        //update
+        public Claim GetClaimById(int i)
+        {
+            foreach (Claim claim in _claimQueue)
+            {
+                if (claim.ClaimId == i)
+                    return claim;
+            }
+            return null;
+        }
     }
 }

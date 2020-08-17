@@ -2,6 +2,7 @@
 using ChallengeTwo_Repo;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -66,7 +67,7 @@ namespace ChallengeTwo_ProgramUI
                     EnterNewClaim();
                     break;
                 case "4":
-                    //ModifyClaim();
+                    ModifyClaim();
                     break;
                 case "5":
                     _isRunning = false;
@@ -78,10 +79,10 @@ namespace ChallengeTwo_ProgramUI
             _console.WriteLine("Press any key to return to the menu...");
             _console.ReadKey();
         }
-        public Queue<Claim> GetDirectory()
+        private Queue<Claim> GetDirectory()
         {
-            Queue<Claim> listOfClaims = new Queue<Claim>();
-            return  listOfClaims = _claimQueue.GetClaimDirectory();
+            Queue<Claim> listOfClaims = _claimQueue.GetClaimDirectory();
+            return listOfClaims;
         }
         private void DisplayAllClaims()
         {
@@ -110,7 +111,7 @@ namespace ChallengeTwo_ProgramUI
             else
                 GetMenuSelection();
         }
-        public void DisplayClaim(Claim claim)
+        private void DisplayClaim(Claim claim)
         {
             _console.WriteLine($"" +
                 $"Claim ID: {claim.ClaimId}\n" +
@@ -121,7 +122,7 @@ namespace ChallengeTwo_ProgramUI
                 $"DateOfClaim: {claim.DateOfClaim}" +
                 $"IsValid: {claim.IsValid}");
         }
-        public void EnterNewClaim()
+        private void EnterNewClaim()
         {
             _console.WriteLine("Enter the claim ID: ");
             string idInput = _console.ReadLine();
@@ -150,7 +151,7 @@ namespace ChallengeTwo_ProgramUI
             _claimQueue.AddClaim(newClaim);
         }
 
-        public ClaimType GetClaimType()
+        private ClaimType GetClaimType()
         {
             _console.WriteLine("Select a type:\n" +
                 "1. Car\n" +
@@ -160,13 +161,82 @@ namespace ChallengeTwo_ProgramUI
             {
                 string typeString = _console.ReadLine();
                 bool parseResult = int.TryParse(typeString, out int parsedNumber);
-                if (parseResult && parsedNumber >= 1 && parsedNumber < 3)
+                if (parseResult && parsedNumber >= 1 && parsedNumber < 4)
                 {
                     ClaimType claimType = (ClaimType)parsedNumber - 1;
                     return claimType;
                 }
                 _console.WriteLine("Invalid selection. Please try again.");
             }
+        }
+        private void ModifyClaim()
+        {
+            _console.WriteLine("Which claim would you like to modify?(enter claim id)");
+            string id = _console.ReadLine();
+            int idInt = Int32.Parse(id);
+
+            Claim updating = _claimQueue.GetClaimById(idInt);
+
+            DisplayClaim(updating);
+
+            _console.WriteLine("What do you want to update?");
+            string updateChoice = UpdateMenu();
+            ModifyComponent(updateChoice, updating);
+        }
+        private string UpdateMenu()
+        {
+            _console.WriteLine("1. Claim Id\n" +
+                "2. Claim Type\n" +
+                "3. Claim description\n" +
+                "4. Damage Amount\n" +
+                "5. Date of Accident\n" +
+                "6. Date of Claim\n");
+            string input = _console.ReadLine();
+            return input;
+        }
+        private void ModifyComponent(string choice, Claim claim)
+        {
+            _console.Clear();
+            switch (choice)
+            {
+                case "1":
+                    _console.WriteLine("Enter the modified claim ID: ");
+                    string idInput = _console.ReadLine();
+                    int idInputInt = Int32.Parse(idInput);
+                    claim.ClaimId = idInputInt;
+                    break;
+                case "2":
+                    _console.WriteLine("Choose the modified claim type: ");
+                    ClaimType typeInput = GetClaimType();
+                    claim.Type = typeInput;
+                    break;
+                case "3":
+                    _console.WriteLine("Enter the modified claim desription: ");
+                    string descInput = _console.ReadLine();
+                    claim.Description = descInput;
+                    break;
+                case "4":
+                    _console.WriteLine("modified amount of damage: $");
+                    string damageInput = _console.ReadLine();
+                    decimal decimalDamageInput = Decimal.Parse(damageInput);
+                    claim.ClaimAmount = decimalDamageInput;
+                    break;
+                case "5":
+                    _console.WriteLine("Modified Date of Accident (e.g. 01/22/2020): ");
+                    DateTime accidentDateInput = DateTime.Parse(_console.ReadLine());
+                    claim.DateOfIncident = accidentDateInput;
+                    break;
+                case "6":
+                    _console.WriteLine("Modified Date of Claim(e.g. 01/22/2020): ");
+                    DateTime claimDateInput = DateTime.Parse(_console.ReadLine());
+                    claim.DateOfClaim = claimDateInput;
+                    break;
+                default:
+                    //handle this
+                    break;
+            }
+            _console.WriteLine("Press any key to return to the menu...");
+            _console.ReadKey();
         }
     }
 }
