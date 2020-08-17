@@ -62,10 +62,10 @@ namespace ChallengeThree_ProgramUI
                     UpdateBadge();
                     break;
                 case "3":
-                    //DeleteAll();
+                    DeleteAll();
                     break;
                 case "4":
-                    //ShowAllBAdges();
+                    ShowAllBadges();
                     break;
                 case "5":
                     _isRunning = false;
@@ -74,6 +74,8 @@ namespace ChallengeThree_ProgramUI
                     //handle this
                     break;
             }
+            _console.WriteLine("Press any key to return to the menu...");
+            _console.ReadKey();
         }
 
         private void CreateNewBadge()
@@ -102,21 +104,72 @@ namespace ChallengeThree_ProgramUI
         }
         private void UpdateBadge()
         {
-
-
             _console.WriteLine("What is the badge number to update?");
             string id = _console.ReadLine();
             int idInt = Int32.Parse(id);
 
             Badge updating = _badgeRepo.GetBadgeById(idInt);
 
-            _console.WriteLine($"{updating.ID} has access to doors {updating.Doors.ToString()}");
+            HasAccessTo(updating);
 
             _console.WriteLine("What would you like to do?\n" +
                 "\t 1. Remove a door\n" +
                 "\t 2. Add a door");
             string input = _console.ReadLine();
+
+            if (input == "1")
+            {
+                _console.WriteLine("Which door would you like to remove?");
+                string removeThis = _console.ReadLine();
+                _badgeRepo.RemoveDoor(updating, removeThis);
+                HasAccessTo(updating);
+            }
+            else if (input == "2")
+            {
+                _console.WriteLine("Which door would you like to add?");
+                string addThis = _console.ReadLine();
+                _badgeRepo.AddDoor(updating, addThis);
+                HasAccessTo(updating);
+            }
+
+
         }
-        
+        private void DeleteAll()
+        {
+            _console.WriteLine("What is the badge number do you want to delete all access?");
+            string id = _console.ReadLine();
+            int idInt = Int32.Parse(id);
+
+            _badgeRepo.DeleteAllDoors(idInt);
+        }
+        private void ShowAllBadges()
+        {
+            Dictionary<int, Badge> repo = _badgeRepo.GetDict();
+            _console.WriteLine("Badge#\t Door Access");
+
+            foreach (var badge in repo)
+            {
+                DisplayBadge(badge.Value);
+            }
+        }
+        private void DisplayBadge(Badge badge)
+        {
+            _console.Write($"{badge.ID}\t");
+            foreach (var door in badge.Doors)
+            {
+                _console.Write(door + ", ");
+            }
+            _console.WriteLine("");
+        }
+        private void HasAccessTo(Badge badge)
+        {
+            _console.Write($"{badge.ID} has access to door(s) ");
+            foreach (var door in badge.Doors)
+            {
+                _console.Write(door + ", ");
+            }
+            _console.WriteLine("");
+        }
+
     }
 }
