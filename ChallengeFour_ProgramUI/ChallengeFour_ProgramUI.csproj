@@ -46,10 +46,17 @@
     <Compile Include="Consoles\IConsole.cs" />
     <Compile Include="Consoles\RealConsole.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ProgramUI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChallengeFour_Repo\ChallengeFour_Repo.csproj">
+      <Project>{EB013072-38A3-495F-B5D3-BFDB26958E31}</Project>
+      <Name>ChallengeFour_Repo</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
