@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChallengeFive_ProgramUI
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
