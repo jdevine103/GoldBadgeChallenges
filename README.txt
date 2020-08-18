@@ -6,7 +6,7 @@
 		*delete meal input
 		*ingredient input
 Challenge Two:
-	-﻿Known bugs:
+	Known bugs:
 	-No testing yet
 	-No bound checks at:
 		*any console input
@@ -15,10 +15,17 @@ Challenge Two:
 	-Modify claim not done yet
 
 Challenge Three:
-	-﻿Known bugs:
+	﻿Known bugs:
 	-No Testing yet 
 	-No bound checks at:
 		*any console input
 	-Output formatting
+
 Challenge Four:
-	no skeleton yet
+	Know bugs:
+	-No testing yet
+	-No bound checks at:
+		*any console input
+	
+	Notes:
+	-Cost per person "hard coded" in depending on the event type
