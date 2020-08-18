@@ -39,6 +39,7 @@ namespace ChallengeFour_ProgramUI
 
         private string GetMenuSelection()
         {
+            _console.Clear();
             _console.WriteLine("Welcome to the Outings menu.\n" +
                 "Choose an option:\n" +
                 "1. Display all outings\n" +
@@ -64,7 +65,7 @@ namespace ChallengeFour_ProgramUI
                     DisplayTotalForAllOutings();
                     break;
                 case "4":
-                    //SeeTotalByType();
+                    DisplayTotalByType();
                     break;
                 case "5":
                     _isRunning = false;
@@ -132,6 +133,24 @@ namespace ChallengeFour_ProgramUI
             }
 
             _console.WriteLine("The total cost for all outings is: $" + totalCost);
+        }
+
+        private void DisplayTotalByType()
+        {
+            _console.WriteLine("Choose outing type to display total cost of that type for: ");
+            EventType costType = ChooseType();
+
+            List<Outing> outingList = _outingRepo.GetOutings();
+            decimal totalCostForType = 0;
+            foreach (var outing in outingList)
+            {
+                if (outing.Type.Equals(costType))
+                {
+                    totalCostForType += outing.TotalEventCost;
+                }
+            }
+
+            _console.WriteLine($"The total cost for all {costType.ToString()} outings is: $" + totalCostForType);
         }
         private void SeedContentList()
         {
