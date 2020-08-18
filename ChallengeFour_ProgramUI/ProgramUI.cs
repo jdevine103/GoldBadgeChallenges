@@ -3,9 +3,11 @@ using ChallengeFour_Repo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ChallengeFour_Repo.Outing;
 
 namespace ChallengeFour_ProgramUI
 {
@@ -56,7 +58,7 @@ namespace ChallengeFour_ProgramUI
                     DisplayAllOutings();
                     break;
                 case "2":
-                    //AddOuting();
+                    AddOuting();
                     break;
                 case "3":
                     //SeeTotalForAllOutings();
@@ -88,7 +90,38 @@ namespace ChallengeFour_ProgramUI
         {
             _console.WriteLine($"{outing.Type.ToString()} outing of {outing.Attendance} people, on {outing.Date} ");
         }
+        private void AddOuting()
+        {
+            _console.WriteLine("What typ of outing would you like to add?");
+            Outing.EventType type = ChooseType();
 
+            _console.WriteLine("How many people attended the outing?");
+            string attendance = _console.ReadLine();
+            int attInt = Int32.Parse(attendance);
+
+            _console.WriteLine("What was the date of the outing? (e.g. 01/22/2020)");
+            DateTime dateOfOuting = DateTime.Parse(_console.ReadLine());
+
+            Outing newOuting = new Outing(type, attInt, dateOfOuting);
+            _outingRepo.AddOuting(newOuting);
+        }
+        private Outing.EventType ChooseType()
+        {
+            Console.WriteLine("1. Golf\n" +
+                "2. Bowling\n" +
+                "3. Amusement Park\n" +
+                "4. Concert\n");
+            while (true)
+            {
+                string eventString = _console.ReadLine();
+                bool parseResult = int.TryParse(eventString, out int parsedNumber);
+                if (parseResult && parsedNumber >= 1 && parsedNumber < 5)
+                {
+                    EventType type = (EventType)parsedNumber - 1;
+                    return type;
+                }
+            }
+        }
         private void SeedContentList()
         {
             DateTime golfDate = new DateTime(2020, 05, 20);
