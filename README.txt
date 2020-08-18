@@ -29,3 +29,12 @@ Challenge Four:
 	
 	Notes:
 	-Cost per person "hard coded" in depending on the event type
+
+Challenge Five:
+	Known bugs:
+	-No testing yet
+	-No Update, No Delete
+	-Poor output formatting
+	-No bound checks at:
+		*any console input 
+	-List not sorted(need to impletement a comaparable interface of some sort)
