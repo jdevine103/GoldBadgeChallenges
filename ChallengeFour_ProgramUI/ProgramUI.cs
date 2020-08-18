@@ -61,7 +61,7 @@ namespace ChallengeFour_ProgramUI
                     AddOuting();
                     break;
                 case "3":
-                    //SeeTotalForAllOutings();
+                    DisplayTotalForAllOutings();
                     break;
                 case "4":
                     //SeeTotalByType();
@@ -121,6 +121,17 @@ namespace ChallengeFour_ProgramUI
                     return type;
                 }
             }
+        }
+        private void DisplayTotalForAllOutings()
+        {
+            List<Outing> outingList = _outingRepo.GetOutings();
+            decimal totalCost = 0;
+            foreach (var outing in outingList)
+            {
+                totalCost += outing.TotalEventCost;
+            }
+
+            _console.WriteLine("The total cost for all outings is: $" + totalCost);
         }
         private void SeedContentList()
         {
