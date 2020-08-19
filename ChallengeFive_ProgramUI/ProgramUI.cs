@@ -94,7 +94,6 @@ namespace ChallengeFive_ProgramUI
         {
             _console.WriteLine("Select a type:\n" +
                 "1. Potential\n2. Current\n3. Past");
-
             while (true)
             {
                 string typeString = _console.ReadLine();

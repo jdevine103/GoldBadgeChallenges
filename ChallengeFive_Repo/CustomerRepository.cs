@@ -20,7 +20,6 @@ namespace ChallengeFive_Repo
         public int Compare(object x, object y)
         {
             throw new NotImplementedException();
-
         }
 
         //read
