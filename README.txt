@@ -8,9 +8,6 @@ Challenge Two:
 	Known bugs:
 	-No validation checks at:
 		*any console input
-	-Output formatting
-	-DateTime format
-	-Modify claim not done yet
 
 Challenge Three:
 	﻿Known bugs:
