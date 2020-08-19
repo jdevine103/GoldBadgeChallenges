@@ -92,7 +92,7 @@ namespace ChallengeFive_ProgramUI
         }
         private CustType GetCustType()
         {
-            _console.WriteLine("Select a type\n" +
+            _console.WriteLine("Select a type:\n" +
                 "1. Potential\n2. Current\n3. Past");
 
             while (true)
