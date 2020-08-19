@@ -4,49 +4,104 @@ using System.ComponentModel.Design;
 using ChallengeTwo_ProgramUI;
 using ChallengeTwo_Repo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static ChallengeTwo_Repo.Claim;
 
 namespace ChallengeTwo_Tests
 {
     [TestClass]
     public class ChallengeTwo_Tests
     {
-        private ClaimRepository _repo;
-        private Claim _claim;
-
-        [TestInitialize]
-        public void Arrange()
+        [TestMethod]
+        public void AddClaimTest()
         {
-            //console added
-            var commandList = new List<string>() { "3", "1", "1", "car crash", "5000", "01/22/2020", "01/23/2020" };
-            var console = new MockConsole(commandList);
-            var program = new ProgramUI(console);
+            //Arrange
+            ClaimRepository _testRepo = new ClaimRepository();
 
-            //_repo = new ClaimRepository();
-            //DateTime incidentDateOne = new DateTime(2020, 11, 02);
-            //DateTime claimDateOne = new DateTime(2020, 11, 03);
-            //_claim = new Claim(1, 0, "Crash on 465", 500, incidentDateOne, claimDateOne);
+            DateTime claim1accident = new DateTime(2020, 02, 11);
+            DateTime claim1date = new DateTime(2020, 02, 13);
+            DateTime claim2accident = new DateTime(2020, 02, 11);
+            DateTime claim2date = new DateTime(2020, 11, 11);
+
+            Claim carCrash = new Claim(1, ClaimType.Car, "Car Crash", 300, claim1accident, claim1date);
+            Claim houseFire = new Claim(2, ClaimType.Home, "House Fire", 4500, claim2accident, claim2date);
+
+            //Act
+            _testRepo.AddClaim(carCrash);
+            _testRepo.AddClaim(houseFire);
+
+            //Assert
+            //probably should use other method in repo to test
+            Queue<Claim> retrieveQueue = _testRepo.GetClaimDirectory();
+            Assert.AreEqual(carCrash, retrieveQueue.Dequeue());
         }
         [TestMethod]
-        public void DisplayAllClaimRepo()
+        public void GetDirectoryTest()
         {
-            var commandList = new List<string>() { "3", "1", "1", "car crash", "5000", "01/22/2020", "01/23/2020","10 ","1"};
-            var console = new MockConsole(commandList);
-            var program = new ProgramUI(console);
+            //Arrange
+            ClaimRepository _testRepo = new ClaimRepository();
 
-            program.Start();
-            Console.WriteLine(console.Output);
+            DateTime claim1accident = new DateTime(2020, 02, 11);
+            DateTime claim1date = new DateTime(2020, 02, 13);
+            DateTime claim2accident = new DateTime(2020, 02, 11);
+            DateTime claim2date = new DateTime(2020, 11, 11);
 
-            Assert.IsTrue(console.Output.Contains("car crash"));
+            Claim carCrash = new Claim(1, ClaimType.Car, "Car Crash", 300, claim1accident, claim1date);
+            Claim houseFire = new Claim(2, ClaimType.Home, "House Fire", 4500, claim2accident, claim2date);
+
+            //Act
+            _testRepo.AddClaim(carCrash);
+            _testRepo.AddClaim(houseFire);
+
+            //Assert
+            //probably should use other method in repo to test
+            Queue<Claim> retrieveQueue = _testRepo.GetClaimDirectory();
+            Assert.AreEqual(carCrash, retrieveQueue.Dequeue());
         }
         [TestMethod]
-        public void AddressNextClaimAndDequeue()
+        public void DequeueClaimTest()
         {
+            //Arrange
+            ClaimRepository _testRepo = new ClaimRepository();
 
+            DateTime claim1accident = new DateTime(2020, 02, 11);
+            DateTime claim1date = new DateTime(2020, 02, 13);
+            DateTime claim2accident = new DateTime(2020, 02, 11);
+            DateTime claim2date = new DateTime(2020, 11, 11);
+
+            Claim carCrash = new Claim(1, ClaimType.Car, "Car Crash", 300, claim1accident, claim1date);
+            Claim houseFire = new Claim(2, ClaimType.Home, "House Fire", 4500, claim2accident, claim2date);
+
+            //Act
+            _testRepo.AddClaim(carCrash);
+            _testRepo.AddClaim(houseFire);
+            _testRepo.DealWithNextClaim();
+
+            //Assert
+            Queue<Claim> retrieveQueue = _testRepo.GetClaimDirectory();
+            Assert.AreEqual(houseFire, retrieveQueue.Dequeue());
         }
         [TestMethod]
-        public void NewClaim()
+        public void GetClaimByIDTest()
         {
+            //Arrange
+            ClaimRepository _testRepo = new ClaimRepository();
 
+            DateTime claim1accident = new DateTime(2020, 02, 11);
+            DateTime claim1date = new DateTime(2020, 02, 13);
+            DateTime claim2accident = new DateTime(2020, 02, 11);
+            DateTime claim2date = new DateTime(2020, 11, 11);
+
+            Claim carCrash = new Claim(1, ClaimType.Car, "Car Crash", 300, claim1accident, claim1date);
+            Claim houseFire = new Claim(2, ClaimType.Home, "House Fire", 4500, claim2accident, claim2date);
+
+            //Act
+            _testRepo.AddClaim(carCrash);
+            _testRepo.AddClaim(houseFire);
+            Claim testClaim = _testRepo.GetClaimById(1);
+            //Assert
+            //probably should use other method in repo to test
+
+            Assert.AreEqual(testClaim, carCrash);
         }
 
     }
