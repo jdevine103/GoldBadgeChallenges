@@ -87,11 +87,12 @@ namespace ChallengeTwo_ProgramUI
         private void DisplayAllClaims()
         {
             var listOfClaims = GetDirectory();
-            _console.WriteLine("ClaimID  Type    Description Amount  DateOfAccident  DateOfClaim IsValid");
+            _console.WriteLine(String.Format("{0,-10} {1,-10} {2,-20} {3,-10} {4,-20}{5,-20}{6,-10}", "ClaimID","Type","Description","Amount","DateOfAccident","DateOfClaim","IsValid"));
 
             foreach (var claim in listOfClaims)
             {
-                _console.WriteLine($"{claim.ClaimId}         {claim.Type}    {claim.Description}    {claim.ClaimAmount}   {claim.DateOfIncident.ToString()}   {claim.DateOfClaim.ToString()}  {claim.IsValid}");
+                _console.WriteLine(String.Format("{0,-10} {1,-10} {2,-20} {3,-10} {4,-20} {5,-20} {6,-10}",
+                    claim.ClaimId, claim.Type, claim.Description, claim.ClaimAmount, claim.DateOfIncident.ToShortDateString(), claim.DateOfClaim.ToShortDateString(), claim.IsValid));
             }
         }
 
