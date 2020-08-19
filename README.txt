@@ -13,11 +13,9 @@ Challenge Three:
 	﻿Known bugs:
 	-No validation checks at:
 		*any console input
-	-Output formatting
 
 Challenge Four:
 	Know bugs:
-	-No testing yet
 	-No validation checks at:
 		*any console input
 	Notes:

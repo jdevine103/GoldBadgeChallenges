@@ -89,7 +89,7 @@ namespace ChallengeFour_ProgramUI
         }
         private void DisplayOuting(Outing outing)
         {
-            _console.WriteLine($"{outing.Type.ToString()} outing of {outing.Attendance} people, on {outing.Date} ");
+            _console.WriteLine($"{outing.Type.ToString()} outing of {outing.Attendance} people, on {outing.Date.ToShortDateString()}.");
         }
         private void AddOuting()
         {
