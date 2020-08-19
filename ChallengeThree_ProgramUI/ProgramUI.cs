@@ -24,6 +24,7 @@ namespace ChallengeThree_ProgramUI
 
         public void Start()
         {
+            SeedContent();
             RunMenu();
         }
 
@@ -145,7 +146,7 @@ namespace ChallengeThree_ProgramUI
         private void ShowAllBadges()
         {
             Dictionary<int, Badge> repo = _badgeRepo.GetDict();
-            _console.WriteLine("Badge#\t Door Access");
+            _console.WriteLine(String.Format("{0,-10}{1,-10}", "Badge#", "Door Access"));
 
             foreach (var badge in repo)
             {
@@ -154,12 +155,8 @@ namespace ChallengeThree_ProgramUI
         }
         private void DisplayBadge(Badge badge)
         {
-            _console.Write($"{badge.ID}\t");
-            foreach (var door in badge.Doors)
-            {
-                _console.Write(door + ", ");
-            }
-            _console.WriteLine("");
+            string combindedString = string.Join(",", badge.Doors);
+            _console.WriteLine(String.Format("{0,-10}{1,-10}", badge.ID, combindedString)); ;
         }
         private void HasAccessTo(Badge badge)
         {
@@ -170,6 +167,16 @@ namespace ChallengeThree_ProgramUI
             }
             _console.WriteLine("");
         }
+        private void SeedContent()
+        {
+            List<string> testListOne = new List<string>() { "a1", "a2" };
+            List<string> testListTwo = new List<string>() { "b1", "b2" };
 
+            Badge testBadgeOne = new Badge(1, testListOne);
+            Badge testBadgeTwo = new Badge(2, testListTwo);
+
+            _badgeRepo.AddNewBadgeToDict(testBadgeOne);
+            _badgeRepo.AddNewBadgeToDict(testBadgeTwo);
+        }
     }
 }
