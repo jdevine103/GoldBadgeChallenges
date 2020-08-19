@@ -15,6 +15,7 @@ namespace ChallengeOne_ProgramUI
 
         public void Start()
         {
+            SeedContentList();
             RunMenu();
         }
 
@@ -80,7 +81,7 @@ namespace ChallengeOne_ProgramUI
                 $"Meal number: {item.MealNumber}\n" +
                 $"Meal name: {item.MealName}\n" +
                 $"Meal Description: {item.MealDesc}\n" +
-                $"Price: {item.Price}");
+                $"Price: {item.Price}\n");
         }
 
         private void CreateNewItem()
@@ -133,5 +134,26 @@ namespace ChallengeOne_ProgramUI
 
         }
 
+
+        private void SeedContentList()
+        {
+            List<string> ingredientsList = new List<string>();
+            List<string> ingredientsListTwo = new List<string>();
+
+            ingredientsList.Add("Cheese");
+            ingredientsList.Add("Pattie");
+            ingredientsList.Add("Bun");
+            Menu _item = new Menu(1, "Burger", ingredientsList, 10);
+
+            ingredientsListTwo.Add("Cheddar");
+            ingredientsListTwo.Add("Tomato");
+            ingredientsListTwo.Add("Bread");
+            Menu _itemTwo = new Menu(2, "Sandwhich", ingredientsListTwo, 20);
+
+
+            _menuRepo.AddMenuItem(_item);
+            _menuRepo.AddMenuItem(_itemTwo);
+            
+        }
     }
 }

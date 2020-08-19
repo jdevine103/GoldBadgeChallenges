@@ -10,70 +10,72 @@ namespace ChallengeOne_Tests
     [TestClass]
     public class ChallengeOneTests
     {
-        [TestClass]
-        public class MenuRepoTests
+        [TestMethod]
+        public void AddMenuItemTest()
         {
-            private MenuRepository _repo;
-            private Menu _item;
-            private Menu _itemTwo;
-            private List<string> _ingredients = new List<string>();
-            private List<string> _ingredientsTwo = new List<string>();
+            //Arrange
+            MenuRepository _menuRepo = new MenuRepository();
 
+            List<string> ingredientsList = new List<string>();
+            List<string> ingredientsListTwo = new List<string>();
 
-            [TestInitialize]
-            public void Arrange()
-            {
-                _ingredients.Add("cheese");
-                _ingredients.Add("pattie");
-                _ingredients.Add("bun");
-                _repo = new MenuRepository();
-                _item = new Menu(1, "Burger", _ingredients, 10);
+            ingredientsList.Add("Cheese");
+            ingredientsList.Add("Pattie");
+            ingredientsList.Add("Bun");
 
-                _ingredientsTwo.Add("cheddar");
-                _ingredientsTwo.Add("tomato");
-                _ingredientsTwo.Add("bread");
-                _itemTwo = new Menu(2, "Sandwhich", _ingredientsTwo, 20);
+            ingredientsListTwo.Add("Cheddar");
+            ingredientsListTwo.Add("Tomato");
+            ingredientsListTwo.Add("Bread");
 
+            //Act
+            Menu _item = new Menu(1, "Burger", ingredientsList, 10);
+            Menu _itemTwo = new Menu(2, "Sandwhich", ingredientsListTwo, 20);
+            _menuRepo.AddMenuItem(_item);
+            _menuRepo.AddMenuItem(_itemTwo);
+            List<Menu> _menu = _menuRepo.GetMenu();
 
-                _repo.AddMenuItem(_item);
+            //Assert
+            Assert.AreEqual(_menu[0], _item);
 
-            }
+        }
+        [TestMethod]
+        public void GetMenuTest()
+        {
+            //Arrange
+            MenuRepository _menuRepo = new MenuRepository();
 
-            [TestMethod]
-            public void ShowContentTest()
-            {
-                //Act
-                List<Menu> directory = _repo.GetMenu();
-                bool directoryHasItem = _repo.GetMenuItemByName(_item.MealName) == _item;
+            List<string> ingredientsList = new List<string>();
+            List<string> ingredientsListTwo = new List<string>();
 
-                //Assert
-                Assert.IsTrue(directoryHasItem);
+            ingredientsList.Add("Cheese");
+            ingredientsList.Add("Pattie");
+            ingredientsList.Add("Bun");
+            Menu _item = new Menu(1, "Burger", ingredientsList, 10);
 
+            ingredientsListTwo.Add("Cheddar");
+            ingredientsListTwo.Add("Tomato");
+            ingredientsListTwo.Add("Bread");
+            Menu _itemTwo = new Menu(2, "Sandwhich", ingredientsListTwo, 20);
 
-            }
-            [TestMethod]
-            public void AddContentTest()
-            {
-                //Act
+            //Act
+            _menuRepo.AddMenuItem(_item);
+            _menuRepo.AddMenuItem(_itemTwo);
+            List<Menu> _menu = _menuRepo.GetMenu();
 
-                List<Menu> directory = _repo.GetMenu();
-                directory.Add(_itemTwo);
+            //Assert
+            Assert.AreEqual(_menu[1], _itemTwo);
+        }
 
-                bool directoryHasItemAfterAdd = _repo.GetMenuItemByName(_itemTwo.MealName) == _itemTwo;
+        [TestMethod]
+        public void GetItemByNameTest()
+        {
 
-                //Assert
-                Assert.IsTrue(directoryHasItemAfterAdd);
-            }
+        }        
+        [TestMethod]
+        public void DeleteMenuItemTest()
+        {
 
-            [TestMethod]
-            public void DeleteContentTest()
-            {
-                //Act
-                bool removeResult = _repo.DeleteMenuItem(_item);
-
-                //Assert
-                Assert.IsTrue(removeResult);
-            }
         }
     }
 }
+

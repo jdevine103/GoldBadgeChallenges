@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace ChallengeTwo_Repo
 {
+        public enum ClaimType
+        {
+            Car, Home, Theft
+        }
     public class Claim
     {
         public Claim(int claimId, ClaimType type, string description, decimal claimAmount, DateTime incidentDate, DateTime claimDate)
@@ -41,9 +45,5 @@ namespace ChallengeTwo_Repo
         }
 
 
-        public enum ClaimType
-        {
-            Car, Home, Theft
-        }
     }
 }

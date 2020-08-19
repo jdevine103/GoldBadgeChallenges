@@ -4,12 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Security.Claims;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using static ChallengeTwo_Repo.Claim;
-using Claim = ChallengeTwo_Repo.Claim;
+//using static ChallengeTwo_Repo.Claim;
+//using Claim = ChallengeTwo_Repo.Claim;
 
 namespace ChallengeTwo_ProgramUI
 {
