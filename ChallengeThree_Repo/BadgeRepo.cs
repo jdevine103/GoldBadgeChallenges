@@ -16,10 +16,13 @@ namespace ChallengeThree_Repo
         public Dictionary<int, Badge> GetDict()
         {
             return _badgeDict;
-        }
+        } 
         public void AddNewBadgeToDict(Badge newBadge)
         {
+            if (!_badgeDict.ContainsKey(newBadge.ID))
+            {
             _badgeDict.Add(newBadge.ID, newBadge);
+            }
         }
         public Badge GetBadgeById(int id)
         {
