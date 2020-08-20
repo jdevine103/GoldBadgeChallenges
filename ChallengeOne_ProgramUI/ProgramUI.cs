@@ -88,7 +88,18 @@ namespace ChallengeOne_ProgramUI
         {
             Console.WriteLine("Enter Meal Number: ");
             string number = Console.ReadLine();
-            int numberInteger = Int32.Parse(number);
+            int numberInteger;
+            bool parseResult = int.TryParse(number, out int parsedNumber);
+            if (parseResult)
+            {
+                numberInteger = Int32.Parse(number);
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Starting over.");
+                numberInteger = 0; //had to assign?
+                CreateNewItem();
+            }
 
             Console.WriteLine("Enter Meal Name: ");
             string name = Console.ReadLine();
@@ -153,7 +164,7 @@ namespace ChallengeOne_ProgramUI
 
             _menuRepo.AddMenuItem(_item);
             _menuRepo.AddMenuItem(_itemTwo);
-            
+
         }
     }
 }
